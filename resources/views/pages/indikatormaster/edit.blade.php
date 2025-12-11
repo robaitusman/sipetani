@@ -52,12 +52,12 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <select required=""  id="ctrl-bidang" data-field="bidang" name="bidang"  placeholder="Select a value ..."    class="form-select" >
                                             <option value="">Select a value ...</option>
                                             <?php
-                                                $options = Menu::bidang();
+                                                $options = $roles ?? [];
                                                 $field_value = $data['bidang'];
                                                 if(!empty($options)){
                                                 foreach($options as $option){
-                                                $value = $option['value'];
-                                                $label = $option['label'];
+                                                $value = $option->role_id;
+                                                $label = $option->role_name;
                                                 $selected = Html::get_record_selected($field_value, $value);
                                             ?>
                                             <option <?php echo $selected ?> value="<?php echo $value ?>">

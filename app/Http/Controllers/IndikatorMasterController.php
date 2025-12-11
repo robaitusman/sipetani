@@ -66,7 +66,10 @@ class IndikatorMasterController extends Controller
      * @return \Illuminate\View\View
      */
 	function add(){
-		return $this->renderView("pages.indikatormaster.add");
+		$roles = DB::table('roles')
+			->orderBy('role_name')
+			->get(['role_id', 'role_name']);
+		return $this->renderView("pages.indikatormaster.add", compact('roles'));
 	}
 	
 
@@ -97,7 +100,10 @@ class IndikatorMasterController extends Controller
 			$record->update($modeldata);
 			return $this->redirect("indikatormaster", "Record updated successfully");
 		}
-		return $this->renderView("pages.indikatormaster.edit", ["data" => $record, "rec_id" => $rec_id]);
+		$roles = DB::table('roles')
+			->orderBy('role_name')
+			->get(['role_id', 'role_name']);
+		return $this->renderView("pages.indikatormaster.edit", ["data" => $record, "rec_id" => $rec_id, "roles" => $roles]);
 	}
 	
 

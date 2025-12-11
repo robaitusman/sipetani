@@ -23,7 +23,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                 </div>
                 <div class="col  " >
                     <div class="">
-                        <div class="h5 font-weight-bold text-primary">Add New Indikator Master</div>
+                        <div class="h5 font-weight-bold text-primary">Tambah Indikator Master</div>
                     </div>
                 </div>
             </div>
@@ -51,11 +51,11 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <select required=""  id="ctrl-bidang" data-field="bidang" name="bidang"  placeholder="Select a value ..."    class="form-select" >
                                                 <option value="">Select a value ...</option>
                                                 <?php
-                                                    $options = Menu::bidang();
+                                                    $options = $roles ?? [];
                                                     if(!empty($options)){
                                                     foreach($options as $option){
-                                                    $value = $option['value'];
-                                                    $label = $option['label'];
+                                                    $value = $option->role_id;
+                                                    $label = $option->role_name;
                                                     $selected = Html::get_field_selected('bidang', $value, "");
                                                 ?>
                                                 <option <?php echo $selected ?> value="<?php echo $value ?>">
