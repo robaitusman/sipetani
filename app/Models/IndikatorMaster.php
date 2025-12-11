@@ -211,7 +211,13 @@ class IndikatorMaster extends Model
 			"indikator_master.indikator_kinerja AS indikator_kinerja",
 			"indikator_master.satuan AS satuan",
 			"roles.role_id AS roles_role_id",
-			"indikator_master.id AS id" 
+			"indikator_master.id AS id",
+			"evaluasi.id AS evaluasi_id",
+			"evaluasi.target AS evaluasi_target",
+			"evaluasi.nilai AS evaluasi_nilai",
+			"evaluasi.bukti_dukung AS evaluasi_bukti_dukung",
+			"evaluasi.input_by AS evaluasi_input_by",
+			"evaluasi.periode_id AS evaluasi_periode_id"
 		];
 	}
 	

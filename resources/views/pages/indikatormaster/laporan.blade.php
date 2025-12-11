@@ -15,6 +15,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
     $limit = $records->perPage();
     $record_count = count($records);
     $pageTitle = "Indikator Master"; //set dynamic page title
+    
 ?>
 @php
     use Illuminate\Support\Str;
@@ -180,6 +181,7 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                             <th class="td-target" > Target</th>
                                             <th class="td-nilai" > Nilai</th>
                                             <th class="td-bukti_dukung" > Bukti Dukung</th>
+                                            <th class="td-aksi text-center" > Aksi</th>
                                         </tr>
                                     </thead>
                                     <?php
@@ -218,18 +220,26 @@ e.g $arrDataFromDb = $comp_model->fetchData(); //function name
                                                 <?php echo $hasEvaluasi ? $data['evaluasi_nilai'] : '-'; ?>
                                             </td>
                                             <td class="td-bukti_dukung text-center">
+                                                <?php if($hasEvaluasi && !empty($data['evaluasi_bukti_dukung'])){ ?>
+                                                    <a href="{{ url($data['evaluasi_bukti_dukung']) }}"
+                                                       target="_blank"
+                                                       class="btn btn-outline-primary btn-sm"
+                                                       data-bs-toggle="tooltip"
+                                                       title="Lihat Bukti Dukung">
+                                                        <i class="dripicons-preview"></i> Preview
+                                                    </a>
+                                                <?php } else { ?>
+                                                    -
+                                                <?php } ?>
+                                            </td>
+                                            <td class="td-aksi text-center">
                                                 <?php if($hasEvaluasi){ ?>
-                                                    <div class="d-flex align-items-center justify-content-center gap-2">
-                                                        <span class="badge bg-success rounded-circle p-2">
-                                                            <i class="dripicons-checkmark"></i>
-                                                        </span>
-                                                        <a href="{{ url('evaluasiindikator/edit/' . $data['evaluasi_id']) }}"
-                                                           class="btn btn-success btn-sm page-drawer"
-                                                           data-bs-toggle="tooltip"
-                                                           title="Edit Data">
-                                                            <i class="dripicons-document-edit"></i>
-                                                        </a>
-                                                    </div>
+                                                    <a href="{{ url('evaluasiindikator/edit/' . $data['evaluasi_id']) }}"
+                                                       class="btn btn-success btn-sm page-drawer"
+                                                       data-bs-toggle="tooltip"
+                                                       title="Edit Data">
+                                                        <i class="dripicons-document-edit"></i>
+                                                    </a>
                                                 <?php } else { ?>
                                                     -
                                                 <?php } ?>
